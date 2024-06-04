@@ -5,7 +5,7 @@ using GlideGo_Backend.API.Shared.Infrastructure.Persistence.EFC.Repositories;
 
 namespace GlideGo_Backend.API.IdentifyAccessManagement.Infrastructure.Persistence.EFC.Repositories;
 
-public class UserRepository : BaseRepository<User>
+public class UserRepository:BaseRepository<User>, IUserRepository
 {
     
 }
