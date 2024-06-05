@@ -19,17 +19,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Design\Application\Internal\CommandServices\" />
-      <Folder Include="Design\Application\Internal\QueryServices\" />
-      <Folder Include="Design\Domain\Model\Aggregates\" />
-      <Folder Include="Design\Domain\Model\Commands\" />
-      <Folder Include="Design\Domain\Model\Queries\" />
-      <Folder Include="Design\Domain\Model\ValueObjects\" />
-      <Folder Include="Design\Domain\Repositories\" />
-      <Folder Include="Design\Domain\Services\" />
-      <Folder Include="Design\Infrastructure\Persistence\EFC\Repositories\" />
-      <Folder Include="Design\Interfaces\ACL\Services\" />
-      <Folder Include="Design\Interfaces\REST\Resources\" />
       <Folder Include="Design\Interfaces\REST\Transform\" />
     </ItemGroup>
 
