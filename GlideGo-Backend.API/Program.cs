@@ -49,10 +49,17 @@ builder.Services.AddSwaggerGen(
             Contact = new OpenApiContact{ Name = "Glidego", Email = "contact@glidego.com" },
             License = new OpenApiLicense { Name = "Apache 2.0", Url = new Uri("https://www.apache.org/licenses/LICENSE-2.0.html")},
         });
-    });
+    }); 
 
 var app = builder.Build();
 
+// Verify Database Objects are Created
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<AppDbContext>();
+    context.Database.EnsureCreated();
+}
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
