@@ -1,3 +1,5 @@
+using GlideGo_Backend.API.Execution_Monitor.Domain.Repositories;
+using GlideGo_Backend.API.Execution_Monitor.Infrastructure.Persistence.EFC.Repositories;
 using GlideGo_Backend.API.Shared.Infrastructure.Interfaces.ASP.Configuration;
 using GlideGo_Backend.API.Shared.Infrastructure.Persistence.EFC.Configuration;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +17,6 @@ builder.Services.AddRouting(options => options.LowercaseUrls = true);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 //Configure Database Context and Logging Levels
-
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     if (connectionString == null) return;
@@ -49,17 +50,19 @@ builder.Services.AddSwaggerGen(
 // Configure Lowercase URLs
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
+// Register the VehicleUsage services and repositories
+builder.Services.AddScoped<IVehicleUsageRepository, VehicleUsageRepository>();
+builder.Services.AddScoped<VehicleUsageCommandService>();
+
 var app = builder.Build();
 
-
- //Verify Database Objects are Created
- using (var scope = app.Services.CreateScope())
- {
+// Verify Database Objects are Created
+using (var scope = app.Services.CreateScope())
+{
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<AppDbContext>();
     context.Database.EnsureCreated();
- }
-
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

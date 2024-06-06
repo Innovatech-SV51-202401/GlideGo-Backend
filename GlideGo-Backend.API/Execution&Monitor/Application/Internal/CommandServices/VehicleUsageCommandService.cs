@@ -1,7 +1,7 @@
+using GlideGo_Backend.API.Execution_Monitor.Application.Internal.CommandServices;
 using GlideGo_Backend.API.Execution_Monitor.Domain.Model.Entities;
 using GlideGo_Backend.API.Execution_Monitor.Domain.Repositories;
 
-namespace GlideGo_Backend.API.Execution_Monitor.Application.Internal.CommandServices;
 
 public class VehicleUsageCommandService
 {
@@ -17,9 +17,9 @@ public class VehicleUsageCommandService
         return await _repository.GetAllAsync();
     }
 
-    public async Task<VehicleUsage> GetByIdAsync(Guid id)
+    public async Task<VehicleUsage> GetByIdAsync(int id)
     {
-        return await _repository.GetByIdAsync(id);
+        return await _repository.FindByIdAsync(id);
     }
 
     public async Task AddAsync(VehicleUsageDto dto)
@@ -28,9 +28,9 @@ public class VehicleUsageCommandService
         await _repository.AddAsync(vehicleUsage);
     }
 
-    public async Task UpdateAsync(Guid id, VehicleUsageDto dto)
+    public async Task UpdateAsync(int id, VehicleUsageDto dto)
     {
-        var vehicleUsage = await _repository.GetByIdAsync(id);
+        var vehicleUsage = await _repository.FindByIdAsync(id);
         if (vehicleUsage != null)
         {
             vehicleUsage.VehicleId = dto.VehicleId;
@@ -40,7 +40,7 @@ public class VehicleUsageCommandService
             vehicleUsage.TotalDistance = dto.TotalDistance;
             vehicleUsage.MoneySaved = dto.MoneySaved;
 
-            await _repository.UpdateAsync(vehicleUsage);
+            _repository.Update(vehicleUsage);
         }
     }
 }
