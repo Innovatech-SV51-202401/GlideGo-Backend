@@ -1,45 +1,40 @@
-using GlideGo_Backend.API.Execution_Monitor.Domain.Model.Entities;
+using GlideGo_Backend.API.Execution_Monitor.Domain.Model.Aggregates;
 using GlideGo_Backend.API.Execution_Monitor.Domain.Model.Commands;
 using GlideGo_Backend.API.Execution_Monitor.Domain.Repositories;
 using GlideGo_Backend.API.Execution_Monitor.Domain.Services;
 using GlideGo_Backend.API.Shared.Domain.Repositories;
 
-namespace GlideGo_Backend.API.Execution_Monitor.Application.Internal.CommandServices;
-
-public class ReservationCommandService : IReservationCommandService
+namespace GlideGo_Backend.API.Execution_Monitor.Application.Internal.CommandServices
 {
-    private readonly IReservationRepository _reservationRepository;
-    private readonly IActiveServiceRepository _activeServiceRepository;
-    private readonly IUnitOfWork _unitOfWork;
-
-    public ReservationCommandService(IReservationRepository reservationRepository, IActiveServiceRepository activeServiceRepository, IUnitOfWork unitOfWork)
+    public class ReservationCommandService : INewReservationCommandService
     {
-        _reservationRepository = reservationRepository;
-        _activeServiceRepository = activeServiceRepository;
-        _unitOfWork = unitOfWork;
-    }
+        private readonly INewReservationRepository _reservationRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-    public async Task<Reservation?> Handle(CreateReservationCommand command)
-    {
-        var activeService = await _activeServiceRepository.GetActiveServiceByUser(command.ClientId);
-        if (activeService != null) throw new Exception("User already has an active service.");
-
-        var reservation = new Reservation
+        public ReservationCommandService(INewReservationRepository reservationRepository, IUnitOfWork unitOfWork)
         {
-            ClientId = command.ClientId,
-            VehicleId = command.VehicleId
-        };
-
-        try
-        {
-            await _reservationRepository.AddAsync(reservation);
-            await _unitOfWork.CompleteAsync();
-        }
-        catch (Exception e)
-        {
-            return null;
+            _reservationRepository = reservationRepository;
+            _unitOfWork = unitOfWork;
         }
 
-        return reservation;
+        public async Task<Reservation?> Handle(CreateReservationCommand command)
+        {
+            var reservation = await _reservationRepository.FindByVehicleIdAsync(command.VehicleId);
+            if (reservation != null) throw new Exception("Reservation with this VehicleId already exists");
+
+            reservation = new Reservation(command);
+
+            try
+            {
+                await _reservationRepository.AddAsync(reservation);
+                await _unitOfWork.CompleteAsync();
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+
+            return reservation;
+        }
     }
 }
