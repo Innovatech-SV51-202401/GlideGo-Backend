@@ -29,4 +29,11 @@
         <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="7.6.0"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="IdentifyAccessManagement\Infrastructure\Hashing\" />
+      <Folder Include="IdentifyAccessManagement\Infrastructure\Persistence\EFC\Repositories\" />
+      <Folder Include="IdentifyAccessManagement\Infrastructure\Tokens\JWT\configuration\" />
+      <Folder Include="IdentifyAccessManagement\Infrastructure\Tokens\JWT\Service\" />
+    </ItemGroup>
+
 </Project>
