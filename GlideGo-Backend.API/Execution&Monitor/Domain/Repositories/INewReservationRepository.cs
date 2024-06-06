@@ -5,4 +5,5 @@ namespace GlideGo_Backend.API.Execution_Monitor.Domain.Repositories;
 public interface INewReservationRepository : IBaseRepository<Reservation>
 {
     Task<Reservation?> FindByVehicleIdAsync(string vehicleId);
+    Task<IEnumerable<Reservation>> FindAllByVehicleIdAsync(string vehicleId);
 }
