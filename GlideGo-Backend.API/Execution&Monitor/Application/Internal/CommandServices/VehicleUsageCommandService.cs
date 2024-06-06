@@ -17,7 +17,7 @@ public class VehicleUsageCommandService
         return await _repository.GetAllAsync();
     }
 
-    public async Task<VehicleUsage> GetByIdAsync(int id)
+    public async Task<VehicleUsage> GetByIdAsync(Guid id)
     {
         return await _repository.FindByIdAsync(id);
     }
@@ -28,7 +28,7 @@ public class VehicleUsageCommandService
         await _repository.AddAsync(vehicleUsage);
     }
 
-    public async Task UpdateAsync(int id, VehicleUsageDto dto)
+    public async Task UpdateAsync(Guid id, VehicleUsageDto dto)
     {
         var vehicleUsage = await _repository.FindByIdAsync(id);
         if (vehicleUsage != null)
