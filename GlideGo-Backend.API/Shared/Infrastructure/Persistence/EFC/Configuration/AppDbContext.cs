@@ -9,6 +9,7 @@ namespace GlideGo_Backend.API.Shared.Infrastructure.Persistence.EFC.Configuratio
 public class AppDbContext : DbContext
 {
     public DbSet<VehicleUsage> VehicleUsages { get; set; }
+    public DbSet<ActiveServices> ActiveServices { get; set; }
 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
