@@ -1,8 +1,14 @@
 namespace GlideGo_Backend.API.Execution_Monitor.Domain.Model.Entities;
 
-public class ActiveServices(int vehicleId, Guid distanceToUse, Guid durationToUse, Guid location)
+public class ActiveServices(
+     Guid vehicleId, 
+     Guid distanceToUse, 
+     Guid durationToUse, 
+     Guid location)
 {
-    public int VehicleId { get; set; } = vehicleId;
+    public Guid Id { get; set; } = Guid.NewGuid();
+    
+    public Guid VehicleId { get; set; } = vehicleId;
 
     public Guid DistanceToUse { get; set; } = distanceToUse;
 

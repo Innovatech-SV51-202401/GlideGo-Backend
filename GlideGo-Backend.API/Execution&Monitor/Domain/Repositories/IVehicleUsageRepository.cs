@@ -4,7 +4,7 @@ using GlideGo_Backend.API.Shared.Domain.Repositories;
 
 namespace GlideGo_Backend.API.Execution_Monitor.Domain.Repositories;
 
-public interface IVehicleUsageRepository : IBaseRepository<VehicleUsage>
+public interface IVehicleUsageRepository : IBaseRepository<VehicleUsage, Guid>
 {
     Task<IEnumerable<VehicleUsage>> GetAllAsync();
 }
