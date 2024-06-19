@@ -23,7 +23,7 @@ public class VehicleUsageController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<VehicleUsage>> Get(Guid id)
+    public async Task<ActionResult<VehicleUsage>> Get(int id)
     {
         var result = await _service.GetByIdAsync(id);
         if (result == null)
@@ -41,7 +41,7 @@ public class VehicleUsageController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(Guid id, [FromBody] VehicleUsage vehicleUsage)
+    public async Task<IActionResult> Put(int id, [FromBody] VehicleUsage vehicleUsage)
     {
         await _service.UpdateAsync(id, vehicleUsage);
         return NoContent();

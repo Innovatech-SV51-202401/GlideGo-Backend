@@ -1,6 +1,7 @@
 
 using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
 using GlideGo_Backend.API.Execution_Monitor.Domain.Model.Entities;
+using GlideGo_Backend.API.IAM.Domain.Model.Aggregates;
 using GlideGo_Backend.API.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,12 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+        
+        builder.Entity<User>().HasKey(u => u.Id);
+        builder.Entity<User>().Property(u => u.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<User>().Property(u => u.Username).IsRequired();
+        builder.Entity<User>().Property(u => u.PasswordHash).IsRequired();
+        
         builder.UseSnakeCaseWithPluralizedTableNamingConvention();
     }
 }
