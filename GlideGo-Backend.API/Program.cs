@@ -1,3 +1,4 @@
+using GlideGo_Backend.API.Execution_Monitor.Application.Internal.CommandServices;
 using GlideGo_Backend.API.Execution_Monitor.Domain.Repositories;
 using GlideGo_Backend.API.Execution_Monitor.Infrastructure.Persistence.EFC.Repositories;
 using GlideGo_Backend.API.Shared.Infrastructure.Interfaces.ASP.Configuration;
@@ -53,6 +54,8 @@ builder.Services.AddRouting(options => options.LowercaseUrls = true);
 // Register the VehicleUsage services and repositories
 builder.Services.AddScoped<IVehicleUsageRepository, VehicleUsageRepository>();
 builder.Services.AddScoped<VehicleUsageCommandService>();
+builder.Services.AddScoped<IActiveServicesRepository, ActiveServicesRepository>();
+builder.Services.AddScoped<ActiveServicesCommandService>();
 
 var app = builder.Build();
 
