@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GlideGo_Backend.API.Execution_Monitor.Infrastructure.Persistence.EFC.Repositories;
 
-public class VehicleUsageRepository : BaseRepository<VehicleUsage, Guid>, IVehicleUsageRepository
+public class VehicleUsageRepository : BaseRepository<VehicleUsage>, IVehicleUsageRepository
 {
     private readonly AppDbContext _context;
 
