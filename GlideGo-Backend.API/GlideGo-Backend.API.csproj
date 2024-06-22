@@ -35,8 +35,4 @@
       <Folder Include="Design\Application\Internal\OutboundServices\" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Design\Interfaces\REST\Transform\" />
-    </ItemGroup>
-
 </Project>

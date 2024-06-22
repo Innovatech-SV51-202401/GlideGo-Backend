@@ -23,4 +23,9 @@ public class VehicleRepository(AppDbContext context) : BaseRepository<Vehicle>(c
     {
         return await Context.Set<Vehicle>().FirstOrDefaultAsync(f=>f.IdVehicle == idVehicle && f.IdOwner == idOwner);
     }
+    
+    public async Task<IEnumerable<Vehicle>> GetAllAsync()
+    {
+        return await Context.Set<Vehicle>().ToListAsync();
+    }
 }

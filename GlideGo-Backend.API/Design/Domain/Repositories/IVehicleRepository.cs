@@ -8,4 +8,5 @@ public interface IVehicleRepository : IBaseRepository<Vehicle>
     Task<IEnumerable<Vehicle>> FindAllByIdOwner(int idOwner);
     Task<Vehicle?> FindByIdVehicle(int idVehicle);
     Task<Vehicle?> FindByIdVehicleAndOwner(int idVehicle, int idOwner);
+    Task<IEnumerable<Vehicle>> GetAllAsync();
 }
