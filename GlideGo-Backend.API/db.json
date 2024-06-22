@@ -1,0 +1,92 @@
+{
+  "clients": [
+    {
+      "id": "1",
+      "name": "Juan Pérez",
+      "email": "juan.perez@example.com",
+      "phone": "+123456789",
+      "address": "Calle Falsa 123",
+      "birthdate": "1990-01-01",
+      "username": "juanp",
+      "password": "hashed_password",
+      "registrationDate": "2023-05-20",
+      "servicesHistory": ["s1", "s2"],
+      "serviceActive": null,
+      "preference": {
+        "language": "es"
+      },
+      "metodosPago": ["tarjeta_credito_1"],
+      "recompensas": 150
+    }
+
+  ],
+  "servicesHistory": [
+    {
+      "id": "s1",
+      "initialTimestamp": "2024-05-22T14:30:00Z",
+      "finalTimestamp": "2024-05-22T14:30:00Z",
+      "initialLatitude": "123.456",
+      "initialLongitude": "123.456",
+      "finalLatitude": "123.456",
+      "finalLongitude": "123.456",
+      "distance": 0.3,
+      "time": 1
+    }
+
+  ],
+  "serviceActive": [
+    {
+      "id": "s1",
+      "clientId": "1",
+      "ownerId": "1",
+      "vehicleId": "v1",
+      "route": [
+        {
+          "latitude": "123.456",
+          "longitude": "123.456",
+          "timestamp": "2024-05-22T14:30:00Z",
+          "speed": 0.3,
+          "status": "moving"
+        }
+      ]
+    }
+  ],
+  "vehicle": [
+    {
+      "id": "v1",
+      "image": "https://example.com/image.jpg",
+      "type": "bicycle",
+      "brand": "Toyota",
+      "model": "Corolla",
+      "revisionId": ["r1"],
+      "status": "available",
+      "activeUserId": null,
+      "pickUpLocation": {
+        "latitude": "123.456",
+        "longitude": "123.456",
+        "address": "Calle Falsa 123"
+      },
+      "dropOffLocation": [
+        {
+          "latitude": "123.456",
+          "longitude": "123.456",
+          "address": "Calle Falsa 123",
+          "open": "07:00",
+          "close": "23:00"
+        }
+      ]
+    }
+  ],
+  "revision": [
+    {
+      "id": "r1",
+      "image": "https://example.com/image.jpg",
+      "vehicleId": "v1",
+      "localId": "l1",
+      "mechanicId": "m1",
+      "timestamp": "2024-05-22T14:30:00Z",
+      "status": "approved",
+      "comments": "Everything is fine"
+    }
+  ]
+}
