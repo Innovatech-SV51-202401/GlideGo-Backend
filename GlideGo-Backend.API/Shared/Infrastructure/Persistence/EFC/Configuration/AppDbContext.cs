@@ -1,5 +1,6 @@
 
 using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
+using GlideGo_Backend.API.Design.Domain.Model.Aggregates;
 using GlideGo_Backend.API.Execution_Monitor.Domain.Model.Entities;
 using GlideGo_Backend.API.IAM.Domain.Model.Aggregates;
 using GlideGo_Backend.API.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
@@ -27,7 +28,16 @@ public class AppDbContext : DbContext
         builder.Entity<User>().Property(u => u.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<User>().Property(u => u.Username).IsRequired();
         builder.Entity<User>().Property(u => u.PasswordHash).IsRequired();
+
+        builder.Entity<Vehicle>().ToTable("vehicles");
+        builder.Entity<Vehicle>().HasKey(v => v.Id);
+        builder.Entity<Vehicle>().Property(v=> v.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Vehicle>().Property(v => v.Category).IsRequired().HasMaxLength(30);
+        builder.Entity<Vehicle>().Property(v => v.SubCategory).IsRequired().HasMaxLength(30);
+        builder.Entity<Vehicle>().Property(v => v.IdVehicle).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Vehicle>().Property(v => v.IdOwner).IsRequired();
         
+       
         builder.UseSnakeCaseWithPluralizedTableNamingConvention();
     }
 }

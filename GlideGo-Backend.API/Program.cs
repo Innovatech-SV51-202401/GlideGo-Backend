@@ -1,4 +1,9 @@
 using System.Configuration;
+using GlideGo_Backend.API.Design.Application.Internal.CommandService;
+using GlideGo_Backend.API.Design.Application.Internal.QueryServices;
+using GlideGo_Backend.API.Design.Domain.Repositories;
+using GlideGo_Backend.API.Design.Domain.Services;
+using GlideGo_Backend.API.Design.Infrastructure.Persistence.EFC.Repositories;
 using GlideGo_Backend.API.Execution_Monitor.Domain.Repositories;
 using GlideGo_Backend.API.Execution_Monitor.Infrastructure.Persistence.EFC.Repositories;
 using GlideGo_Backend.API.IAM.Application.Internal.CommandServices;
@@ -71,6 +76,10 @@ builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IVehicleUsageRepository, VehicleUsageRepository>();
 builder.Services.AddScoped<VehicleUsageCommandService>();
+
+builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
+builder.Services.AddScoped<IVehicleCommandService, VehicleCommandService>();
+builder.Services.AddScoped<IVehicleQueryService, VehicleQueryService>();
 
 // IAM Bounded Context Injection Configuration
 

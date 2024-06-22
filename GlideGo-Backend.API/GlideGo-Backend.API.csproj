@@ -31,4 +31,8 @@
         <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="7.6.0"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Design\Application\Internal\OutboundServices\" />
+    </ItemGroup>
+
 </Project>
