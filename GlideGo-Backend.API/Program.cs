@@ -87,6 +87,14 @@ builder.Services.AddSwaggerGen(
         });
     });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllPolicy", policy => policy.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
+});
+
+
 // Configure Lowercase URLs
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
@@ -125,6 +133,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("AllowAllPolicy");
 
 // Add Middleware for Request Authorization
 app.UseRequestAuthorization();
