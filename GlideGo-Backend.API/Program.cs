@@ -61,6 +61,30 @@ builder.Services.AddSwaggerGen(
             Contact = new OpenApiContact{ Name = "Glide Go", Email = "contact@glidego.com"},
             License = new OpenApiLicense{ Name = "Apache 2.0", Url = new Uri("https://www.apache.org/licenses/LICENSE-2.0")},
         });
+        c.EnableAnnotations();
+        c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+        {
+            In = ParameterLocation.Header,
+            Description = "Please enter token",
+            Name = "Authorization",
+            Type = SecuritySchemeType.Http,
+            BearerFormat = "JWT",
+            Scheme = "bearer"
+        });
+        c.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+            {
+                new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference
+                    {
+                        Id = "Bearer",
+                        Type = ReferenceType.SecurityScheme
+                    }
+                },
+                Array.Empty<string>()
+            }
+        });
     });
 
 // Configure Lowercase URLs
