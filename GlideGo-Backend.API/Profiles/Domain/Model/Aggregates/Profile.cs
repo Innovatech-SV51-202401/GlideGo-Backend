@@ -26,8 +26,12 @@ public partial class Profile
         Contact = new PersonContact(command.Email, command.Number);
     }
     
-    public int Dni { get; }
+    public int Id { get; }
     public PersonName Name { get; private set; }
     public PersonAge Age { get; private set; }
     public PersonContact Contact { get; private set; }
+    
+    public string FullName => Name.FullName;
+    public int PersonAge => Age.Age;
+    public string FullContact => Contact.FullContact;
 }

@@ -21,8 +21,8 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
 
         // Place here the configuration of the entities
         // Profiles Context
-        builder.Entity<Profile>().HasKey(p => p.Dni);
-        builder.Entity<Profile>().Property(p => p.Dni).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Profile>().HasKey(p => p.Id);
+        builder.Entity<Profile>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Profile>().OwnsOne(p => p.Name,
             n =>
             {
