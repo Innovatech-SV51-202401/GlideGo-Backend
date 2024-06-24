@@ -1,0 +1,19 @@
+﻿version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=server=db;user=root;password=12345678;database=glide-go-wa
+    depends_on:
+      - db
+  db:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=12345678
+      - MYSQL_DATABASE=glide-go-wa
+    volumes:
+      - db_data:/var/lib/mysql
+volumes:
+  db_data:
