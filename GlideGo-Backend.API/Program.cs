@@ -1,5 +1,14 @@
+using GlideGo_Backend.API.Profiles.Application.Internal.CommandServices;
+using GlideGo_Backend.API.Profiles.Application.Internal.QueryServices;
+using GlideGo_Backend.API.Profiles.Domain.Repositories;
+using GlideGo_Backend.API.Profiles.Domain.Services;
+using GlideGo_Backend.API.Profiles.Infrastructure.Persistence.EFC.Repositories;
+using GlideGo_Backend.API.Profiles.Interfaces.ACL;
+using GlideGo_Backend.API.Profiles.Interfaces.ACL.Services;
+using GlideGo_Backend.API.Shared.Domain.Repositories;
 using GlideGo_Backend.API.Shared.Infrastructure.Interfaces.ASP.Configuration;
 using GlideGo_Backend.API.Shared.Infrastructure.Persistence.EFC.Configuration;
+using GlideGo_Backend.API.Shared.Infrastructure.Persistence.EFC.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -50,6 +59,18 @@ builder.Services.AddSwaggerGen(
             License = new OpenApiLicense { Name = "Apache 2.0", Url = new Uri("https://www.apache.org/licenses/LICENSE-2.0.html")},
         });
     }); 
+
+// configure Dependency Injection
+
+// Shared Bounded Context Injection Configuration
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+// Profiles Bounded Context Injection Configuration
+builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
+builder.Services.AddScoped<IProfileCommandService, ProfileCommandService>();
+builder.Services.AddScoped<IProfileQueryService, ProfileQueryService>();
+builder.Services.AddScoped<IProfilesContextFacade, ProfilesContextFacade>();
+
 
 var app = builder.Build();
 

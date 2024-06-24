@@ -26,7 +26,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Profile>().OwnsOne(p => p.Name,
             n =>
             {
-                n.WithOwner().HasForeignKey("Dni");
+                n.WithOwner().HasForeignKey("Id");
                 n.Property(p => p.FirstName).HasColumnName("FirstName");
                 n.Property(p => p.LastName).HasColumnName("LastName");
             });
@@ -34,7 +34,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Profile>().OwnsOne(p => p.Contact,
             e =>
             {
-                e.WithOwner().HasForeignKey("Dni");
+                e.WithOwner().HasForeignKey("Id");
                 e.Property(a => a.Email).HasColumnName("EmailAddress");
                 e.Property(a => a.Number).HasColumnName("PhoneNumber");
             });
@@ -42,7 +42,7 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
         builder.Entity<Profile>().OwnsOne(p => p.Age,
             a =>
             {
-                a.WithOwner().HasForeignKey("Dni");
+                a.WithOwner().HasForeignKey("Id");
                 a.Property(s => s.Age).HasColumnName("Age");
             });
         
