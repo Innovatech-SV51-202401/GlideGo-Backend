@@ -32,7 +32,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Design\Application\Internal\OutboundServices\" />
+      <Folder Include="IAM\Application\Internal\QueryServices\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="IAM\Application\Internal\QueryServices\UserQueryService.cs" />
+      <Compile Remove="IAM\Interfaces\REST\Resources\SignUpResource.cs" />
     </ItemGroup>
 
 </Project>
