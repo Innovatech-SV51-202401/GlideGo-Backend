@@ -13,6 +13,13 @@ using GlideGo_Backend.API.IAM.Infrastructure.Tokens.JWT.Configuration;
 using GlideGo_Backend.API.IAM.Infrastructure.Tokens.JWT.Services;
 using GlideGo_Backend.API.IAM.Interfaces.ACL;
 using GlideGo_Backend.API.IAM.Interfaces.ACL.Services;
+using GlideGo_Backend.API.Profiles.Application.Internal.CommandServices;
+using GlideGo_Backend.API.Profiles.Application.Internal.QueryServices;
+using GlideGo_Backend.API.Profiles.Domain.Repositories;
+using GlideGo_Backend.API.Profiles.Domain.Services;
+using GlideGo_Backend.API.Profiles.Infrastructure.Persistence.EFC.Repositories;
+using GlideGo_Backend.API.Profiles.Interfaces.ACL;
+using GlideGo_Backend.API.Profiles.Interfaces.ACL.Services;
 using GlideGo_Backend.API.Shared.Domain.Repositories;
 using GlideGo_Backend.API.Shared.Infrastructure.Interfaces.ASP.Configuration;
 using GlideGo_Backend.API.Shared.Infrastructure.Persistence.EFC.Configuration;
@@ -115,6 +122,12 @@ builder.Services.AddScoped<IUserQueryService, UserQueryService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IHashingService, HashingService>();
 builder.Services.AddScoped<IIamContextFacade, IamContextFacade>();
+
+// Profiles Bounded Context Injection Configuration
+builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
+builder.Services.AddScoped<IProfileCommandService, ProfileCommandService>();
+builder.Services.AddScoped<IProfileQueryService, ProfileQueryService>();
+builder.Services.AddScoped<IProfilesContextFacade, ProfilesContextFacade>();
 
 
 var app = builder.Build();
