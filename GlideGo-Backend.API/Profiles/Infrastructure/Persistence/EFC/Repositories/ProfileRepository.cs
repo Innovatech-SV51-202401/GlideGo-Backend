@@ -7,5 +7,4 @@ namespace GlideGo_Backend.API.Profiles.Infrastructure.Persistence.EFC.Repositori
 
 public class ProfileRepository(AppDbContext context) : BaseRepository<Profile>(context), IProfileRepository
 {
-    
 }
