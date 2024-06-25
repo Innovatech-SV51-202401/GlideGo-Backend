@@ -32,6 +32,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Design\Application\" />
+      <Folder Include="Design\Domain\Services\" />
+      <Folder Include="Design\Interfaces\" />
       <Folder Include="IAM\Application\Internal\QueryServices\" />
     </ItemGroup>
 
